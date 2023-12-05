@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Something About The Real You</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 10;
+            padding: 0;
+            background: url('https://source.unsplash.com/800x600/?flowers') center/cover no-repeat; /* Set flower image as background */
+            color: #336699; /* Mixed blue text color */
+        }
+
+        #flowerContainer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #headerText {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 35px;
+        }
+
+        #firstName {
+            margin-bottom: 10px;
+        }
+
+        #giftButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #16a085; /* Mixed green button background */
+            color: #fff; /* White text color for button */
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #quoteContainer {
+            margin-top: 25px;
+        }
+
+        #quote {
+            font-size: 1.5em;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="flowerContainer">
+        <div id="headerText">Something About The Real You</div>
+        <input type="text" id="firstName" placeholder="Enter your first name">
+        <button id="giftButton" onclick="showQuote()">A Gift From My Side</button>
+        <div id="quoteContainer">
+            <p id="quote"></p>
+        </div>
+    </div>
+
+    <script>
+        const quotes = [
+            "Dear {name}, you have had a wonderful journey till now. Look forward, in the near future, more awaits for you.",
+            "In the garden of life, {name}, may you find endless beauty and joy.",
+            "As the flowers bloom, {name}, so does the beauty in your heart.",
+            // Add more poetic quotes as needed
+            "With each passing day, {name}, may your light shine brighter.",
+            "Embrace the unknown, {name}, for that is where true magic lies.",
+            "Your journey is a canvas, {name}, paint it with the colors of your dreams.",
+            "Breathe in the beauty of now, {name}, for it holds the essence of eternity."
+        ];
+
+        function showQuote() {
+            const firstName = document.getElementById('firstName').value.trim();
+            if (firstName) {
+                const randomQuote = getRandomQuote(firstName);
+                document.getElementById('quote').textContent = `"${randomQuote}"`;
+                document.getElementById('quoteContainer').style.display = 'block';
+            } else {
+                alert("Please enter your first name.");
+            }
+        }
+
+        function getRandomQuote(name) {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            return quotes[randomIndex].replace('{name}', name);
+        }
+    </script>
+
+</body>
+</html>
