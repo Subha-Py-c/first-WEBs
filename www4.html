@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Something For You...</title>
+    <title>Mr. Chapakhana Quotes</title>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -14,42 +14,42 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: url('***') center/cover no-repeat;
+            background: url('https://i.imgur.com/mdYU9VC.jpg') center/cover no-repeat;
             color: #000000;
         }
 
-        #container {    /* ## the large box ## */
+        #container {
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.0); /* Semi-transparent white background er jonno*/
+            background-color: rgba(255, 255, 255, 0.0);
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
-            max-width: 400px;   /* ## alpha = 0.0, so invisible ## */
+            max-width: 400px;
             width: 90%;
         }
 
-        #headerText {       /* ## the Heading text ||8f2f48|## */
+        #headerText {
             font-size: 2.17em;
             font-weight: bold;
-            margin-bottom: 20px; /* ## distance from name box ## */
+            margin-bottom: 20px;
             color: #f48510;
         }
 
-        #firstName {    /* ## name box ## */
+        #firstName {
             margin-bottom: 13px;
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 15px;
-            background-color: transparent; /* */
+            background-color: transparent;
         }
 
         #giftButton {
             padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
-            background-color: rgba(228, 153, 24, 0.8); /* Semi-transparent red */
+            background-color: rgba(228, 153, 24, 0.8);
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -59,25 +59,24 @@
         #quoteContainer {
             display: none;
             margin-top: 25px;
-            background-color: transparent; /* Make the background fully transparent */
+            background-color: transparent;
         }
 
         #quote {
             font-size: 1.75em;
-            font-weight: bold; /* Make the text bold */
-            font-style: italic; /* Make the text italic */
+            font-weight: bold;
+            font-style: italic;
             margin-bottom: 5px;
-            color: #df8c1b; /* Set quote text color to black */
+            color: #df8c1b;
         }
-
     </style>
 </head>
 <body>
 
     <div id="container">
-        <div id="headerText">Something For You...</div>
-        <input type="text" id="firstName" placeholder="Enter your first name">
-        <button id="giftButton" onclick="showQuote()">Click Here</button>
+        <div id="headerText"> Mr. ছাপাখানা Quotes </div>
+        <input type="text" id="firstName" placeholder="Aji, naam to farmayiye appka!">
+        <button id="giftButton" onclick="showQuote()"> এখানে টিপুন </button>
         <div id="quoteContainer">
             <p id="quote"></p>
         </div>
@@ -85,11 +84,10 @@
 
     <script>
         const quotes = [
-            "Dear {name}, you are capable of being the unbelievable, so embrace yourself for the upcoming adventures of your life.",
-            "{name}, may your days be filled with joy, laughter, and endless inspiration.",
-            "As you navigate through the path of your life, {name}, always remember that every step is a victory.",
-            "{name}, you have the power to create the life of your dreams. Seize the day...",
-            "{name}, in the canvas of life, paint bold strokes, and create a masterpiece such that the very World will become a mere spectator."
+            `Tring Tring..
+            She- Hello main Kavita bol rahi hun.
+            Chapakhana- Puri bolna nahi toh Marks Kat lunga...
+                    --how's this {name} ?`
         ];
 
         function showQuote() {
