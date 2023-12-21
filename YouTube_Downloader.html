@@ -89,16 +89,32 @@
     <script>
         async function downloadVideo() {
             const videoUrl = document.getElementById('videoUrl').value.trim();
+        
+            // Check if the video URL is empty
+            if (!videoUrl) {
+                alert("Please enter a valid YouTube video URL.");
+                return;
+            }
+        
             try {
+                // Show loading indicator
+                document.getElementById('result').textContent = 'Fetching video information...';
+                
                 const videoInfo = await ytdl.getBasicInfo(videoUrl);
                 const videoTitle = videoInfo.videoDetails.title;
+        
                 const downloadLink = document.createElement('a');
-                downloadLink.href = videoUrl;
+                downloadLink.href = await ytdl.downloadFromInfo(videoInfo, { format: 'mp4' });
                 downloadLink.download = `${videoTitle}.mp4`;
                 downloadLink.click();
+        
+                // Hide loading indicator
                 document.getElementById('result').textContent = `Video download started: "${videoTitle}.mp4"`;
                 document.getElementById('resultContainer').style.display = 'block';
             } catch (error) {
+                // Hide loading indicator
+                document.getElementById('result').textContent = '';
+        
                 alert(`Error: ${error.message}`);
             }
         }
