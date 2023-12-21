@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Video Downloader</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: url('https://i.imgur.com/3g7X5wI.jpg') center/cover no-repeat;
+            color: #000;
+        }
+
+        #container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.0);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        #headerText {
+            font-size: 2.17em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #f48510;
+            /* Add a black border around the letters */
+            /*-webkit-text-stroke: 1px #000;*/
+            /*text-stroke: 1px #0000FF;*/
+        }
+
+        #videoUrl {
+            margin-bottom: 13px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 15px;
+            background-color: transparent;
+        }
+
+        #downloadButton {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: rgba(228, 153, 24, 0.8);
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #resultContainer {
+            display: none;
+            margin-top: 25px;
+            background-color: transparent;
+        }
+
+        #result {
+            font-size: 1.75em;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 5px;
+            color: #df8c1b;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="headerText">YouTube Video Downloader</div>
+        <input type="text" id="videoUrl" placeholder="Enter YouTube Video URL">
+        <button id="downloadButton" onclick="downloadVideo()">Download</button>
+        <div id="resultContainer">
+            <p id="result"></p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/ytdl-core@latest/dist/browser.js"></script>
+    <script>
+        async function downloadVideo() {
+            const videoUrl = document.getElementById('videoUrl').value.trim();
+            try {
+                const videoInfo = await ytdl.getBasicInfo(videoUrl);
+                const videoTitle = videoInfo.videoDetails.title;
+                const downloadLink = document.createElement('a');
+                downloadLink.href = videoUrl;
+                downloadLink.download = `${videoTitle}.mp4`;
+                downloadLink.click();
+                document.getElementById('result').textContent = `Video download started: "${videoTitle}.mp4"`;
+                document.getElementById('resultContainer').style.display = 'block';
+            } catch (error) {
+                alert(`Error: ${error.message}`);
+            }
+        }
+    </script>
+
+</body>
+</html>
