@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YouTube Video Downloader</title>
     <style>
+        /* Your existing styles remain unchanged */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
@@ -79,42 +80,38 @@
     <div id="container">
         <div id="headerText">YouTube Video Downloader</div>
         <input type="text" id="videoUrl" placeholder="Enter YouTube Video URL">
+        <select id="qualityOption">
+            <option value="1">Highest</option>
+            <option value="2">Medium</option>
+            <option value="3">Lowest</option>
+        </select>
         <button id="downloadButton" onclick="downloadVideo()">Download</button>
         <div id="resultContainer">
             <p id="result"></p>
         </div>
     </div>
 
-    <script src="https://unpkg.com/ytdl-core@latest/dist/browser.js"></script>
+    <script src="https://unpkg.com/pytube"></script>
     <script>
         async function downloadVideo() {
             const videoUrl = document.getElementById('videoUrl').value.trim();
-        
-            // Check if the video URL is empty
-            if (!videoUrl) {
-                alert("Please enter a valid YouTube video URL.");
-                return;
-            }
-        
+            const qualityOption = document.getElementById('qualityOption').value;
+
             try {
-                // Show loading indicator
-                document.getElementById('result').textContent = 'Fetching video information...';
-                
-                const videoInfo = await ytdl.getBasicInfo(videoUrl);
-                const videoTitle = videoInfo.videoDetails.title;
-        
-                const downloadLink = document.createElement('a');
-                downloadLink.href = await ytdl.downloadFromInfo(videoInfo, { format: 'mp4' });
-                downloadLink.download = `${videoTitle}.mp4`;
-                downloadLink.click();
-        
-                // Hide loading indicator
-                document.getElementById('result').textContent = `Video download started: "${videoTitle}.mp4"`;
+                const response = await fetch(`/download?videoUrl=${videoUrl}&qualityOption=${qualityOption}`);
+                const blob = await response.blob();
+
+                const a = document.createElement('a');
+                const url = window.URL.createObjectURL(blob);
+                a.href = url;
+                a.download = `video.mp4`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+
+                document.getElementById('result').textContent = `Video download started: video.mp4`;
                 document.getElementById('resultContainer').style.display = 'block';
             } catch (error) {
-                // Hide loading indicator
-                document.getElementById('result').textContent = '';
-        
                 alert(`Error: ${error.message}`);
             }
         }
