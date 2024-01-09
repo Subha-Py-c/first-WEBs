@@ -45,31 +45,34 @@
     <p><img id="meme-image" src="" alt="Meme Image"></p>
     <p>Current subreddit: <span id="meme-subreddit"></span></p>
 
-<script>
-    function loadMeme() {
-        fetch('https://meme-api.herokuapp.com/gimme')
-            .then(response => response.json())
-            .then(data => {
-                console.log('Data received:', data);
-                const memeImage = document.getElementById('meme-image');
-                const subredditText = document.getElementById('meme-subreddit');
+    <script>
+        function loadMeme() {
+            fetch('https://meme-api.herokuapp.com/gimme')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data received:', data);
 
-                if (data.preview && data.preview.length >= 2) {
-                    memeImage.src = data.preview[-2];
-                    subredditText.textContent = `From subreddit: ${data.subreddit}`;
-                } else {
-                    console.error('Invalid data received:', data);
-                }
-            })
-            .catch(error => console.error('Error fetching meme:', error));
-    }
+                    const memeImage = document.getElementById('meme-image');
+                    const subredditText = document.getElementById('meme-subreddit');
 
-    // Load a meme when the page is loaded
-    loadMeme();
+                    if (data && data.preview && Array.isArray(data.preview) && data.preview.length >= 2) {
+                        memeImage.src = data.preview[data.preview.length - 2];
+                        subredditText.textContent = `From subreddit: ${data.subreddit}`;
+                    } else {
+                        console.error('Invalid data received:', data);
+                        // You may want to handle this error more gracefully, e.g., display a default image or message.
+                    }
+                })
+                .catch(error => console.error('Error fetching meme:', error));
+        }
 
-    // Refresh the meme every 30 seconds
-    setInterval(loadMeme, 30000);
-</script>
+
+        // Load a meme when the page is loaded
+        loadMeme();
+
+        // Refresh the meme every 30 seconds
+        setInterval(loadMeme, 30000);
+    </script>
 
 </body>
 
