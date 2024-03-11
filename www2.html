@@ -32,7 +32,11 @@
             font-size: 2.17em;
             font-weight: bold;
             margin-bottom: 20px; /* ## distance from name box ## */
-            color: #f48510;
+            color: #ff9e35;
+            text-shadow:{0 0 10px rgba(228,153,24, 0.8),
+                         0 0 20px rgba(228, 153, 24, 0.8)};
+<!--            color: #ff9e35;-->
+
         }
 
         #firstName {    /* ## name box ## */
@@ -56,6 +60,10 @@
             margin-bottom: 20px;
         }
 
+        #giftButton:active{
+            background-color: rgba(228, 153, 24, 0.3);
+        }
+
         #quoteContainer {
             display: none;
             margin-top: 25px;
@@ -67,7 +75,10 @@
             font-weight: bold; /* Make the text bold */
             font-style: italic; /* Make the text italic */
             margin-bottom: 5px;
-            color: #df8c1b; /* Set quote text color to black */
+            background: linear-gradient(to bottom left, #ffff00 0%, #ff99cc 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
     </style>
