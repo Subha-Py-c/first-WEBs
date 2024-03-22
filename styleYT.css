@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700&display=swap');
+/* FONTS */
+.tangerine-regular {
+  font-family: "Tangerine", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.tangerine-bold {
+  font-family: "Tangerine", cursive;
+  font-weight: 700;
+  /* font-size: 32px; */
+  font-style: normal;
+}
+
+body{
+  background-color: #786AFF;
+  margin: 89px;
+}
+
+.sldr-title-highlight {
+/*  color: #B4EEFF; */
+  color: transparent;
+  background-image: -webkit-linear-gradient(1deg, #B4EEFF -13%, #72C8FE 5%, #786AFF 40%, #679AFF 80%, #7ED0FF 94%);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:6s infinite alternate gradientAnimation
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position:0% 50%
+    }
+
+    50% {
+        background-position:100% 50%
+    }
+
+    100% {
+        background-position:0% 50%
+    }
+}
+.container {
+  display: flex;
+  margin: 89px;  
+}
+.box{
+  height: 200px;
+  width: 320px;
+  margin: 20px;
+
+  padding: 15px;
+}
+
+#d2{
+  background: linear-gradient(to right, rgb(20, 26, 208), rgb(10, 76, 220));
+  border-radius: 10%;
+  color: whitesmoke;
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#d3{
+  background: linear-gradient(to right, rgb(20, 26, 208), rgb(10, 76, 220));
+  border-radius: 10%;
+  color: whitesmoke;
+  font-size: 26px;
+  font-style: italic;
+  font-weight: 300;
+}
