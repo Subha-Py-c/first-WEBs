@@ -1,121 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Video Downloader</title>
-    <style>
-        /* Your existing styles remain unchanged */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background: url('https://i.imgur.com/3g7X5wI.jpg') center/cover no-repeat;
-            color: #000;
-        }
-
-        #container {
-            text-align: center;
-            background-color: rgba(255, 255, 255, 0.0);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
-            max-width: 400px;
-            width: 90%;
-        }
-
-        #headerText {
-            font-size: 2.17em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            color: #f48510;
-            /* Add a black border around the letters */
-            /*-webkit-text-stroke: 1px #000;*/
-            /*text-stroke: 1px #0000FF;*/
-        }
-
-        #videoUrl {
-            margin-bottom: 13px;
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 15px;
-            background-color: transparent;
-        }
-
-        #downloadButton {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            background-color: rgba(228, 153, 24, 0.8);
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-
-        #resultContainer {
-            display: none;
-            margin-top: 25px;
-            background-color: transparent;
-        }
-
-        #result {
-            font-size: 1.75em;
-            font-weight: bold;
-            font-style: italic;
-            margin-bottom: 5px;
-            color: #df8c1b;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Download</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="styleYT.css">
 </head>
 <body>
-
-    <div id="container">
-        <div id="headerText">YouTube Video Downloader</div>
-        <input type="text" id="videoUrl" placeholder="Enter YouTube Video URL">
-        <select id="qualityOption">
-            <option value="1">Highest</option>
-            <option value="2">Medium</option>
-            <option value="3">Lowest</option>
-        </select>
-        <button id="downloadButton" onclick="downloadVideo()">Download</button>
-        <div id="resultContainer">
-            <p id="result"></p>
-        </div>
+  <h1 style="font-size: 11.8rem; font-weight: 1200;" class="tangerine-bold">
+    Hello!
+    <div style="font-size: 3.7rem; padding-top: 30px;">
+      Download any <span class="sldr-title-highlight">YouTube</span> video here, just with its link.
     </div>
+  </h1>
+  <div class="container">
+    <div id="d2" class="box">
+      This website remains active from 6pm to 10pm everyday.
+    </div>
+    <div id="d3" class="box">
+      <h4>Provide the link here</h4>
+      <form id="downloadForm" action="/download_video" method="POST">
+        <input type="text" id="youtube_link" name="video_url" placeholder="Enter YouTube video URL"><br>
+        <button type="button" onclick="downloadVideo()">Download</button>
+      </form>
+    </div>
+  </div>
 
-    <script src="https://unpkg.com/pytube"></script>
-    <script>
-        async function downloadVideo() {
-            const videoUrl = document.getElementById('videoUrl').value.trim();
-            const qualityOption = document.getElementById('qualityOption').value;
-
-            try {
-                const response = await fetch(`/download?videoUrl=${videoUrl}&qualityOption=${qualityOption}`);
-                const blob = await response.blob();
-
-                const a = document.createElement('a');
-                const url = window.URL.createObjectURL(blob);
-                a.href = url;
-                a.download = `video.mp4`;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-
-                document.getElementById('result').textContent = `Video download started: video.mp4`;
-                document.getElementById('resultContainer').style.display = 'block';
-            } catch (error) {
-                alert(`Error: ${error.message}`);
-            }
+  <script>
+    function downloadVideo() {
+      var videoUrl = document.getElementById('youtube_link').value;
+      fetch('/download_video', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ video_url: videoUrl }),
+      }).then(response => {
+        if (response.ok) {
+          return response.blob();
         }
-    </script>
-
+        throw new Error('Network response was not ok.');
+      }).then(blob => {
+        var url = window.URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'video.mp4'; // You can set the filename here
+        document.body.appendChild(a); // For Firefox compatibility
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  </script>
 </body>
 </html>
