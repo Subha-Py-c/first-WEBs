@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,75 +15,86 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: url('https://i.imgur.com/xVPm5lc.jpg') center/cover no-repeat;
+            background: url('image1_0-2.jpg') center/cover no-repeat;
             color: #000000;
         }
 
-        #container {    /* ## the large box ## */
+        #container {
+            /* ## the large box ## */
             text-align: center;
-            background-color: rgba(255, 255, 255, 0.0); /* Semi-transparent white background er jonno*/
+            background-color: rgba(255, 255, 255, 0.0);
+            /* Semi-transparent white background er jonno*/
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.0);
-            max-width: 400px;   /* ## alpha = 0.0, so invisible ## */
+            max-width: 400px;
+            /* ## alpha = 0.0, so invisible ## */
             width: 90%;
         }
 
-        #headerText {       /* ## the Heading text ||8f2f48|## */
+        #headerText {
+            /* ## the Heading text ||8f2f48|## */
             font-size: 2.17em;
             font-weight: bold;
-            margin-bottom: 20px; /* ## distance from name box ## */
+            margin-bottom: 20px;
+            /* ## distance from name box ## */
             color: #ff9e35;
-            text-shadow:{0 0 10px rgba(228,153,24, 0.8),
-                         0 0 20px rgba(228, 153, 24, 0.8)};
-<!--            color: #ff9e35;-->
-
+            text-shadow: 0 0 10px rgba(228, 153, 24, 0.8),
+                         0 0 20px rgba(228, 153, 24, 0.8);
+            color: #ff9e35;
         }
 
-        #firstName {    /* ## name box ## */
+        #firstName {
+            /* ## name box ## */
             margin-bottom: 13px;
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 15px;
-            background-color: transparent; /* */
+            background-color: transparent;
+            font: 1em sans-serif;
+            /* */
         }
 
         #giftButton {
             padding: 10px 20px;
             font-size: 1em;
             cursor: pointer;
-            background-color: rgba(228, 153, 24, 0.8); /* Semi-transparent red */
+            background-color: rgba(228, 153, 24, 0.8);
+            /* Semi-transparent red */
             color: #fff;
             border: none;
             border-radius: 5px;
             margin-bottom: 20px;
         }
 
-        #giftButton:active{
+        #giftButton:active {
             background-color: rgba(228, 153, 24, 0.3);
         }
 
         #quoteContainer {
             display: none;
             margin-top: 25px;
-            background-color: transparent; /* Make the background fully transparent */
+            background-color: transparent;
+            /* Make the background fully transparent */
         }
 
         #quote {
             font-size: 1.75em;
-            font-weight: bold; /* Make the text bold */
-            font-style: italic; /* Make the text italic */
+            font-weight: bold;
+            /* Make the text bold */
+            font-style: italic;
+            /* Make the text italic */
             margin-bottom: 5px;
             background: linear-gradient(to bottom left, #ffff00 0%, #ff99cc 100%);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
-
     </style>
 </head>
+
 <body>
 
     <div id="container">
@@ -121,4 +133,5 @@
     </script>
 
 </body>
+
 </html>
